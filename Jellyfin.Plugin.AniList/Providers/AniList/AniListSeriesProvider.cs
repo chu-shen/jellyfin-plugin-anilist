@@ -50,7 +50,7 @@ namespace Jellyfin.Plugin.AniList.Providers.AniList
                 // string searchName = Path.GetFileNameWithoutExtension(info.Path);
                 string searchName = info.Name;
                 string titleO = info.OriginalTitle;
-                _log.LogInformation("ItemLookupInfo: ({Name})"titleO); 
+                _log.LogInformation("ItemLookupInfo: ({Name})",titleO); 
                 _log.LogInformation("Start AniList... before Searching ({Name})", searchName); 
                 searchName = Anitomy.AnitomyHelper.ExtractAnimeTitle(searchName);
                 _log.LogInformation("Start AniList... Searching({Name})", searchName);
