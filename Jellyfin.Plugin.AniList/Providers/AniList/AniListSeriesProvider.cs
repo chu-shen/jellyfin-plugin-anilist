@@ -49,14 +49,14 @@ namespace Jellyfin.Plugin.AniList.Providers.AniList
                 // always get true file name(without extension) from path, not info.Name(from ohter metadata plugin).
                 // string searchName = Path.GetFileNameWithoutExtension(info.Path);
                 string searchName = info.Name;
-                // string titleO = info.OriginalTitle;
-                _log.LogInformation(info); 
+                string titleO = info.OriginalTitle;
+                _log.LogInformation("ItemLookupInfo: ({Name})"titleO); 
                 _log.LogInformation("Start AniList... before Searching ({Name})", searchName); 
                 searchName = Anitomy.AnitomyHelper.ExtractAnimeTitle(searchName);
                 _log.LogInformation("Start AniList... Searching({Name})", searchName);
                 var elementsOutput = Anitomy.AnitomyHelper.ElementsOutput(searchName);
                 var anitomyID = Guid.NewGuid().ToString().Split("-")[0];
-                elementsOutput.ForEach(x => _log.LogInformation("AnitomySharp " + anitomyID + + ", " + x.Category + ": " + x.Value));
+                elementsOutput.ForEach(x => _log.LogInformation("AnitomySharp " + anitomyID + ", " + x.Category + ": " + x.Value));
 
                 await AniListHelper.RequestLimiter.Tick().ConfigureAwait(false);
                 await Task.Delay(Plugin.Instance.Configuration.AniDbRateLimit).ConfigureAwait(false);
